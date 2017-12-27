@@ -16,8 +16,8 @@ var GreeterForm = React.createClass({
         return (
             <div>
                 <form onSubmit={this.onFormSubmit}>
-                    <input type="text" ref="name" placeholder="enter name" style={{display : 'block'}} />
-                    <textarea  ref="message" cols="30" rows="7" placeholder="enter message" style={{display : 'block'}} ></textarea>
+                    <input type="text" ref="name" placeholder="enter name" style={{ display: 'block' }} />
+                    <textarea ref="message" cols="30" rows="7" placeholder="enter message" style={{ display: 'block' }} ></textarea>
                     <button>Submit</button >
                 </form>
             </div>
@@ -26,15 +26,19 @@ var GreeterForm = React.createClass({
     onFormSubmit: function (e) {
         e.preventDefault();
         var name = this.refs.name.value;
+        var message = this.refs.message.value;
+        var updates = {};
         if (name.length > 0) {
             this.refs.name.value = '';
-            this.props.onNewName(name);
+         //  this.props.onNewName(name);
+            updates.name = name ;
         }
-        var message = this.refs.message.value;
-        if(message.length>0){
+        if (message.length > 0) {
             this.refs.message.value = '';
-            this.props.onNewMessage(message);
+        //    this.props.onNewMessage(message);
+            updates.message = message;
         }
+        this.props.onNewUpdate(updates);
     }
 });
 
@@ -48,7 +52,7 @@ var Greeter = React.createClass({
     getInitialState: function () {
         return {
             name: this.props.name,
-            message : this.props.message
+            message: this.props.message
         }
     },
     handleNewName: function (name) {
@@ -56,10 +60,13 @@ var Greeter = React.createClass({
             name
         });
     },
-    handleNewMessage : function(message){
+    handleNewMessage: function (message) {
         this.setState({
             message
         });
+    },
+    handleNewUpdate : function(updates){
+       this.setState(updates);
     },
     render: function () {
         var name = this.state.name;
@@ -67,7 +74,7 @@ var Greeter = React.createClass({
         return (
             <div>
                 <GreeterMessage name={name} message={message} />
-                <GreeterForm onNewName={this.handleNewName} onNewMessage={this.handleNewMessage} />
+                <GreeterForm onNewName={this.handleNewName} onNewMessage={this.handleNewMessage} onNewUpdate={this.handleNewUpdate} />
             </div>
         );
     }
