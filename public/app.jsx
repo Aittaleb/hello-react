@@ -1,8 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Greeter = require('./components/Greeter');
+var Greeter = require('Greeter');
 
 ReactDOM.render(
-    <Greeter name="Abdelhamid" message="this is an overriden message" />,
+    <Greeter name="Hamid" message="this is an overriden message" />,
     document.getElementById('app')
 );

@@ -50,7 +50,7 @@
 	var ReactDOM = __webpack_require__(158);
 	var Greeter = __webpack_require__(159);
 
-	ReactDOM.render(React.createElement(Greeter, { name: 'Abdelhamid', message: 'this is an overriden message' }), document.getElementById('app'));
+	ReactDOM.render(React.createElement(Greeter, { name: 'Hamid', message: 'this is an overriden message' }), document.getElementById('app'));
 
 /***/ },
 /* 1 */
